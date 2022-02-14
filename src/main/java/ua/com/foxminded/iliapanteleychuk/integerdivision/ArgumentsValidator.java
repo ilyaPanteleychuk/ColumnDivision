@@ -25,7 +25,7 @@ public class ArgumentsValidator {
         }
     }
     private static void isRigthAmountOfAgruments(String[] args){
-        if(args.length != Context.getAMOUT_OF_ARGUMENTS()){
+        if(args.length != Context.getAMOUNTOFARGUMENTS()){
             throw new BadArgsException("Bad arguments. Write only 2 of them");
         }
     }

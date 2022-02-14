@@ -5,7 +5,7 @@ import ua.com.foxminded.iliapanteleychuk.integerdivision.format.Formatter;
 import ua.com.foxminded.iliapanteleychuk.integerdivision.math.Divider;
 
 public class Context {
-    private static final int AMOUT_OF_ARGUMENTS = 2;
+    private static final int AMOUNT_OF_ARGUMENTS = 2;
     private static int dividend;
     private static int divisor;
     public Context newObject(String[] args){
@@ -23,8 +23,8 @@ public class Context {
         Context.divisor = divisor;
     }
 
-    public static int getAMOUT_OF_ARGUMENTS() {
-        return AMOUT_OF_ARGUMENTS;
+    public static int getAMOUNTOFARGUMENTS() {
+        return AMOUNT_OF_ARGUMENTS;
     }
 
     public int getDividend() {

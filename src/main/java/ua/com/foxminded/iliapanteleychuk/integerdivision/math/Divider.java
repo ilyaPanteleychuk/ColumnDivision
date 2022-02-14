@@ -29,7 +29,6 @@ public class Divider {
                     break;
                 }
             }
-
             if (partialDividend % divisor == 0) i++;
 
             if (partialDividend >= divisor) {
@@ -42,8 +41,6 @@ public class Divider {
             if (i == dividendArray.length - 1) {
                 Step step = new Step(position,partialDividend, partialDividend - (partialDividend % divisor));
                 steps.add(step);
-                System.out.println(1);
-
             }
         }
         return new Result(dividend,divisor,steps,divisionResult);

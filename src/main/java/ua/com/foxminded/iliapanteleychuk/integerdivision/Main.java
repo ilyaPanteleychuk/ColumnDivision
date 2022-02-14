@@ -22,7 +22,7 @@ public class Main {
         Divider divider = context.getDivider();
         Result result = divider.divide(context.getDividend(), context.getDivisor());
         Formatter formatter = context.getFormatters();
-        StringBuilder outPut = formatter.format(result);
+        String outPut = formatter.format(result);
         System.out.println(outPut);
     }
 }
