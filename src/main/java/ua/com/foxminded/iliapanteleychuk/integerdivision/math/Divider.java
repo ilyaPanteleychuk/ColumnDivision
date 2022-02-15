@@ -8,13 +8,11 @@ import java.util.List;
 public class Divider {
     List<Step> steps = new ArrayList<>();
     public Result divide(int dividend, int divisor) {
-
         char[] dividendArray = String.valueOf(dividend).toCharArray();
         int i = 0;
         int position;
         int partialDividend = Integer.parseInt(String.valueOf(dividendArray[0]));
         int divisionResult = dividend / divisor;
-
         while (i < dividendArray.length - 1) {
             position = i;
             if (partialDividend == 0) {
@@ -30,20 +28,18 @@ public class Divider {
                 }
             }
             if (partialDividend % divisor == 0) i++;
-
             if (partialDividend >= divisor) {
-                Step step = new Step(position,partialDividend,partialDividend -(partialDividend % divisor));
+                Step step = new Step(position, partialDividend, partialDividend - (partialDividend % divisor));
                 steps.add(step);
-                System.out.println(1);
                 partialDividend = partialDividend % divisor;
             }
             partialDividend = partialDividend % divisor;
             if (i == dividendArray.length - 1) {
-                Step step = new Step(position,partialDividend, partialDividend - (partialDividend % divisor));
+                Step step = new Step(position, partialDividend, partialDividend - (partialDividend % divisor));
                 steps.add(step);
             }
         }
-        return new Result(dividend,divisor,steps,divisionResult);
+        return new Result(dividend, divisor, steps, divisionResult);
     }
 
     public static class Step {

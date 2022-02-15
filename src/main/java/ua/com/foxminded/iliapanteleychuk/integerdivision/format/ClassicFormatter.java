@@ -79,7 +79,6 @@ public class ClassicFormatter implements Formatter {
            }
        }
     }
-
     private String drawIndent(int times){
         return WHITE_SPACE.repeat(times);
     }
