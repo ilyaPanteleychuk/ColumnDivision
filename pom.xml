@@ -2,10 +2,10 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>ua.foxminded.ilyapanteleychuk</groupId>
-    <artifactId>task1anagram</artifactId>
+    <groupId>ua.foxminded.iliapanteleychuk</groupId>
+    <artifactId>integerdivison</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Task 1 anagram</name>
+    <name>Task 2 columnDivision</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -15,7 +15,29 @@
         <surefireVersion>3.0.0-M5</surefireVersion>
         <editorConfigVersion>0.1.1</editorConfigVersion>
         <mavenShadePluginVersion>3.2.4</mavenShadePluginVersion>
+        <mockitoVersion>4.3.1</mockitoVersion>
+        <mavenShadePlugin>3.2.4</mavenShadePlugin>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junitJupiterVersion}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockitoVersion}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-shade-plugin</artifactId>
+            <version>${mavenShadePluginVersion}</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
@@ -72,25 +94,5 @@
             </plugin>
         </plugins>
     </build>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>${junitJupiterVersion}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <version>4.3.1</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-shade-plugin</artifactId>
-            <version>3.2.4</version>
-        </dependency>
-    </dependencies>
 </project>
 

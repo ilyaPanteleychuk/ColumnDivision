@@ -1,17 +1,16 @@
 package ua.com.foxminded.iliapanteleychuk.integerdivision.pattern;
 
-import ua.com.foxminded.iliapanteleychuk.integerdivision.math.Divider;
-
 import java.util.List;
+
 
 public class Result {
 
     private final int DIVIDEND;
     private final int DIVISOR;
-    private final List<Divider.Step> stepsList;
+    private final List<Step> stepsList;
     private final int DIVISION_RESULT;
 
-    public Result(int DIVIDEND, int DIVISOR, List<Divider.Step> stepsList, int DIVISION_RESULT) {
+    public Result(int DIVIDEND, int DIVISOR, List<Step> stepsList, int DIVISION_RESULT) {
         this.DIVIDEND = DIVIDEND;
         this.DIVISOR = DIVISOR;
         this.stepsList = stepsList;
@@ -26,7 +25,7 @@ public class Result {
         return DIVISOR;
     }
 
-    public List<Divider.Step> getStepsList() {
+    public List<Step> getStepsList() {
         return stepsList;
     }
 

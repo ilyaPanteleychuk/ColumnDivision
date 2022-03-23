@@ -6,8 +6,6 @@ import ua.com.foxminded.iliapanteleychuk.integerdivision.math.Divider;
 import ua.com.foxminded.iliapanteleychuk.integerdivision.pattern.Result;
 
 
-
-
 public class Main {
 
     public static void main(String[] args) {
@@ -22,7 +20,7 @@ public class Main {
         Divider divider = context.getDivider();
         Result result = divider.divide(context.getDividend(), context.getDivisor());
         Formatter formatter = context.getFormatters();
-        String outPut = formatter.format(result);
-        System.out.println(outPut);
+        String output = formatter.format(result);
+        System.out.println(output);
     }
 }
