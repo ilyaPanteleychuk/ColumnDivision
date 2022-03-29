@@ -11,12 +11,14 @@ public class Divider {
 
     public Result divide(int dividend, int divisor) {
         char[] dividendArray = String.valueOf(dividend).toCharArray();
-        int i = 0;
-        int position;
-        int partialDividend = Integer.parseInt(String.valueOf(dividendArray[0]));
         int divisionResult = dividend / divisor;
+        int i = 0;
+        int k = 0;
+        int position;
+        int previousPosition;
+        int partialDividend = Integer.parseInt(String.valueOf(dividendArray[0]));
         while (i < dividendArray.length - 1) {
-            position = i;
+            position = k;
             if (partialDividend == 0) {
                 partialDividend = Integer.parseInt(String.valueOf(dividendArray[i]));
             }
@@ -29,24 +31,23 @@ public class Divider {
                     break;
                 }
             }
-            if (partialDividend % divisor == 0)
+            previousPosition = k;
+            if(partialDividend % divisor != 0) {
+                k = (String.valueOf(partialDividend).length() - String.valueOf(partialDividend % divisor).length()) + previousPosition;   
+            }else {
+                k = String.valueOf(partialDividend).length() + previousPosition;
+            }
+            if (partialDividend % divisor == 0) {
                 i++;
+            }
             if (partialDividend >= divisor) {
-                System.out.println(position);
-                System.out.println(partialDividend);
-                System.out.println((partialDividend - (partialDividend % divisor)));
-                System.out.println();
                 Step step = new Step(position, partialDividend, partialDividend - (partialDividend % divisor));
                 steps.add(step);
                 partialDividend = partialDividend % divisor;
             }
-            partialDividend = partialDividend % divisor;
             if (i == dividendArray.length - 1) {
-                System.out.println(position);
-                System.out.println(partialDividend);
-                System.out.println((partialDividend - (partialDividend % divisor)));
-                System.out.println();
-                Step step = new Step(position + 1, partialDividend, partialDividend - (partialDividend % divisor));
+                position = k;
+                Step step = new Step(position, partialDividend, partialDividend - (partialDividend % divisor));
                 steps.add(step);
             }
         }

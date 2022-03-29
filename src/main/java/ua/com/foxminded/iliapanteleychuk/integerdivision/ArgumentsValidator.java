@@ -10,6 +10,7 @@ public class ArgumentsValidator {
         isRightAmountOfArguments(args);
         isArgumentsAreDigital(args);
         isSecondArgumentIsNotZero(args);
+        isFistArgumentIsNotLessThanSecond(args);
     }
 
     private static void isArgumentsEmpty(String[] args) {
@@ -37,6 +38,11 @@ public class ArgumentsValidator {
     private static void isSecondArgumentIsNotZero(String[] args) {
         if (Integer.parseInt(args[1]) == 0) {
             throw new BadArgsException("Bad arguments. The second argument can`t be zero");
+        }
+    }
+    private static void isFistArgumentIsNotLessThanSecond(String[] args){
+        if(Integer.parseInt(args[0]) < Integer.parseInt(args[1])){
+            throw new BadArgsException("Bad arguments. The fist argument is supposed to be greater");
         }
     }
 }
