@@ -1,4 +1,4 @@
-package ua.com.foxminded.iliapanteleychuk.integerdivision.exeption;
+package ua.com.foxminded.iliapanteleychuk.integerdivision.exception;
 
 public class BadArgsException extends RuntimeException {
 

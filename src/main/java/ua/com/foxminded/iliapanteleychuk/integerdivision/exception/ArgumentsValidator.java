@@ -1,6 +1,4 @@
-package ua.com.foxminded.iliapanteleychuk.integerdivision;
-
-import ua.com.foxminded.iliapanteleychuk.integerdivision.exeption.BadArgsException;
+package ua.com.foxminded.iliapanteleychuk.integerdivision.exception;
 
 
 public class ArgumentsValidator {
@@ -25,24 +23,28 @@ public class ArgumentsValidator {
                 Integer.parseInt(args[i]);
             }
         } catch (NumberFormatException exception) {
-            throw new BadArgsException("Bad arguments. Use only numeric arguments");
+            throw new BadArgsException("Bad arguments. " +
+                "Use only numeric arguments");
         }
     }
 
     private static void isRightAmountOfArguments(String[] args) {
-        if (args.length != Context.getAMOUNTOFARGUMENTS()) {
+        if (args.length != 2) {
             throw new BadArgsException("Bad arguments. Write only 2 of them");
         }
     }
 
     private static void isSecondArgumentIsNotZero(String[] args) {
         if (Integer.parseInt(args[1]) == 0) {
-            throw new BadArgsException("Bad arguments. The second argument can`t be zero");
+            throw new BadArgsException("Bad arguments. " +
+                "The second argument can`t be zero");
         }
     }
+
     private static void isFistArgumentIsNotLessThanSecond(String[] args){
         if(Integer.parseInt(args[0]) < Integer.parseInt(args[1])){
-            throw new BadArgsException("Bad arguments. The fist argument is supposed to be greater");
+            throw new BadArgsException("Bad arguments. " +
+                "The fist argument is supposed to be greater");
         }
     }
 }

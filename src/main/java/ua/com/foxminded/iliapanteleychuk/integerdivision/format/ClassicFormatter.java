@@ -5,6 +5,7 @@ import ua.com.foxminded.iliapanteleychuk.integerdivision.pattern.Step;
 import java.util.List;
 import static java.lang.System.lineSeparator;
 
+
 public class ClassicFormatter implements Formatter {
 
     public static final String WHITE_SPACE = " ";
@@ -19,8 +20,9 @@ public class ClassicFormatter implements Formatter {
         return output.toString();
     }
 
-    public void drawHeader(Result result) {
-        Step firstStep = result.getStepsList().get(0);
+    private void drawHeader(Result result) {
+        List<Step> steps = result.getStepsList();
+        Step firstStep = steps.get(0);
         int dividend = result.getDIVIDEND();
         int divisor = result.getDIVISOR();
         int divisionResult = result.getDIVISION_RESULT();
@@ -28,67 +30,87 @@ public class ClassicFormatter implements Formatter {
         int firstIntegralPartialDividend = firstStep.getINTEGRAL_PARTIAL_DIVIDEND();
         output.append("_")
               .append(dividend)
-              .append("|").append(divisor)
+              .append("|")
+              .append(divisor)
               .append(lineSeparator());
-        
+
         output.append(" ")
               .append(firstIntegralPartialDividend)
-              .append(drawIndent(getIntLength(dividend) - getIntLength(firstPartialDividend)))
-              .append("|")
-              .append(drawSymbol('-', getIntLength(divisor)))
-              .append(lineSeparator());
-        
+              .append(drawIndent(getIntLength(dividend) -
+                     getIntLength(firstPartialDividend)))
+              .append("|");
+        if(getIntLength(divisor) > getIntLength(divisionResult)){
+                 output.append(drawSymbol('-', getIntLength(divisor)))
+                       .append(lineSeparator());
+        }else{
+                 output.append(drawSymbol('-', getIntLength(divisionResult)))
+                       .append(lineSeparator());
+        }
         output.append(" ")
-              .append(drawSymbol('-', getIntLength(firstIntegralPartialDividend)))
-              .append(drawIndent(getIntLength(dividend) - getIntLength(firstPartialDividend)))
+              .append(drawSymbol('-',
+                     getIntLength(firstIntegralPartialDividend)))
+              .append(drawIndent(getIntLength(dividend) -
+                     getIntLength(firstPartialDividend)))
               .append("|")
               .append(divisionResult)
               .append(lineSeparator());
+        if(steps.size() == 1 && firstPartialDividend == firstIntegralPartialDividend){
+            output.append(WHITE_SPACE)
+                  .append("0");
+        }
     }
 
     private void drawStep(Result result) {
         List<Step> steps = result.getStepsList();
         int divisor = result.getDIVISOR();
         while (!(steps.isEmpty())) {
-            if (steps.get(0).getPARTIAL_DIVIDEND() < divisor) {
+            int partialDividend = steps.get(0).getPARTIAL_DIVIDEND();
+            int integralPartialDividend = steps.get(0).getINTEGRAL_PARTIAL_DIVIDEND();
+            int position = steps.get(0).getPOSITION();
+            if (partialDividend < divisor) {
                 output.append(WHITE_SPACE)
-                      .append(drawIndent(steps.get(0).getPOSITION()))
-                      .append(steps.get(0).getPARTIAL_DIVIDEND())
+                      .append(drawIndent(position))
+                      .append(partialDividend)
                       .append(lineSeparator());
                 steps.remove(0);
                 break;
             }
             output.append('_')
-                  .append(drawIndent(steps.get(0).getPOSITION() ))
-                  .append(steps.get(0).getPARTIAL_DIVIDEND())
+                  .append(drawIndent(position))
+                  .append(partialDividend)
                   .append(lineSeparator());
 
-            if (getIntLength(steps.get(0).getINTEGRAL_PARTIAL_DIVIDEND()) < getIntLength(
-                    steps.get(0).getPARTIAL_DIVIDEND())) {
+            if (getIntLength(integralPartialDividend) <
+                        getIntLength(partialDividend)) {
                 output.append(WHITE_SPACE)
-                      .append(drawIndent(steps.get(0).getPOSITION() + 
-                              (getIntLength(steps.get(0).getPARTIAL_DIVIDEND()) - 
-                                      getIntLength(steps.get(0).getINTEGRAL_PARTIAL_DIVIDEND()))))
-                      .append(steps.get(0).getINTEGRAL_PARTIAL_DIVIDEND())
+                      .append(drawIndent(position +
+                          (getIntLength(partialDividend) - getIntLength(integralPartialDividend))))
+                      .append(integralPartialDividend)
                       .append(lineSeparator());
-                
+
                 output.append(WHITE_SPACE)
-                .append(drawIndent(steps.get(0).getPOSITION() + 
-                        (getIntLength(steps.get(0).getPARTIAL_DIVIDEND()) - 
-                                getIntLength(steps.get(0).getINTEGRAL_PARTIAL_DIVIDEND()))))
-                .append(drawSymbol('-', getIntLength(steps.get(0).getINTEGRAL_PARTIAL_DIVIDEND())))
-                .append(lineSeparator());
-                
+                      .append(drawIndent(position +
+                          (getIntLength(partialDividend) - getIntLength(integralPartialDividend))))
+                      .append(drawSymbol('-',
+                             getIntLength(integralPartialDividend)))
+                      .append(lineSeparator());
+
             }else {
                 output.append(WHITE_SPACE)
-                       .append(drawIndent(steps.get(0).getPOSITION()))
-                       .append(steps.get(0).getINTEGRAL_PARTIAL_DIVIDEND())
+                       .append(drawIndent(position))
+                       .append(integralPartialDividend)
                        .append(lineSeparator());
-                
+
                 output.append(WHITE_SPACE)
-                      .append(drawIndent(steps.get(0).getPOSITION()))
-                      .append(drawSymbol('-', getIntLength(steps.get(0).getINTEGRAL_PARTIAL_DIVIDEND())))
+                      .append(drawIndent(position))
+                      .append(drawSymbol('-',
+                             getIntLength(integralPartialDividend)))
                       .append(lineSeparator());
+            }
+            if(steps.size() == 1 && partialDividend == integralPartialDividend){
+                output.append(WHITE_SPACE)
+                      .append(drawIndent(position + getIntLength(partialDividend) - 1))
+                      .append("0");
             }
             steps.remove(0);
             drawStep(result);
