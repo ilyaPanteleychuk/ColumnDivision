@@ -1,6 +1,6 @@
 package ua.com.foxminded.iliapanteleychuk.integerdivision.format;
 
-import ua.com.foxminded.iliapanteleychuk.integerdivision.pattern.Result;
+import ua.com.foxminded.iliapanteleychuk.integerdivision.dataToDraw.Result;
 
 
 public interface Formatter {

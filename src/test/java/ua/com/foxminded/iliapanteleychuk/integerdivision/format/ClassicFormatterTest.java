@@ -3,15 +3,15 @@ package ua.com.foxminded.iliapanteleychuk.integerdivision.format;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ua.com.foxminded.iliapanteleychuk.integerdivision.math.Divider;
-import ua.com.foxminded.iliapanteleychuk.integerdivision.pattern.Result;
+import ua.com.foxminded.iliapanteleychuk.integerdivision.dataToDraw.Result;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static java.lang.System.lineSeparator;
 
 
 class ClassicFormatterTest {
 
-    Divider divider;
-    Formatter formatter;
+    private Divider divider;
+    private Formatter formatter;
     @BeforeEach
     void init(){
         divider = new Divider();

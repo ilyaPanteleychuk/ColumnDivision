@@ -1,14 +1,14 @@
 package ua.com.foxminded.iliapanteleychuk.integerdivision.format;
 
-import ua.com.foxminded.iliapanteleychuk.integerdivision.pattern.Result;
-import ua.com.foxminded.iliapanteleychuk.integerdivision.pattern.Step;
+import ua.com.foxminded.iliapanteleychuk.integerdivision.dataToDraw.Result;
+import ua.com.foxminded.iliapanteleychuk.integerdivision.dataToDraw.Step;
 import java.util.List;
 import static java.lang.System.lineSeparator;
 
 
 public class ClassicFormatter implements Formatter {
 
-    public static final String WHITE_SPACE = " ";
+    private static final String WHITE_SPACE = " ";
     private final StringBuilder output = new StringBuilder();
 
     @Override
@@ -23,11 +23,11 @@ public class ClassicFormatter implements Formatter {
     private void drawHeader(Result result) {
         List<Step> steps = result.getStepsList();
         Step firstStep = steps.get(0);
-        int dividend = result.getDIVIDEND();
-        int divisor = result.getDIVISOR();
-        int divisionResult = result.getDIVISION_RESULT();
-        int firstPartialDividend = firstStep.getPARTIAL_DIVIDEND();
-        int firstIntegralPartialDividend = firstStep.getINTEGRAL_PARTIAL_DIVIDEND();
+        int dividend = result.getDividend();
+        int divisor = result.getDivisor();
+        int divisionResult = result.getDivisionResult();
+        int firstPartialDividend = firstStep.getPartialDividend();
+        int firstIntegralPartialDividend = firstStep.getIntegralPartialDividend();
         output.append("_")
               .append(dividend)
               .append("|")
@@ -62,11 +62,11 @@ public class ClassicFormatter implements Formatter {
 
     private void drawStep(Result result) {
         List<Step> steps = result.getStepsList();
-        int divisor = result.getDIVISOR();
+        int divisor = result.getDivisor();
         while (!(steps.isEmpty())) {
-            int partialDividend = steps.get(0).getPARTIAL_DIVIDEND();
-            int integralPartialDividend = steps.get(0).getINTEGRAL_PARTIAL_DIVIDEND();
-            int position = steps.get(0).getPOSITION();
+            int partialDividend = steps.get(0).getPartialDividend();
+            int integralPartialDividend = steps.get(0).getIntegralPartialDividend();
+            int position = steps.get(0).getPosition();
             if (partialDividend < divisor) {
                 output.append(WHITE_SPACE)
                       .append(drawIndent(position))

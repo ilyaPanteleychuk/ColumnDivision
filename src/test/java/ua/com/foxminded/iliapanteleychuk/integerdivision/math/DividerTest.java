@@ -1,8 +1,8 @@
 package ua.com.foxminded.iliapanteleychuk.integerdivision.math;
 
 import org.junit.jupiter.api.Test;
-import ua.com.foxminded.iliapanteleychuk.integerdivision.pattern.Result;
-import ua.com.foxminded.iliapanteleychuk.integerdivision.pattern.Step;
+import ua.com.foxminded.iliapanteleychuk.integerdivision.dataToDraw.Result;
+import ua.com.foxminded.iliapanteleychuk.integerdivision.dataToDraw.Step;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
