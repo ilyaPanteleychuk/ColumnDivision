@@ -5,7 +5,7 @@ import ua.com.foxminded.iliapanteleychuk.integerdivision.exception.BadArgsExcept
 import ua.com.foxminded.iliapanteleychuk.integerdivision.format.ClassicFormatter;
 import ua.com.foxminded.iliapanteleychuk.integerdivision.format.Formatter;
 import ua.com.foxminded.iliapanteleychuk.integerdivision.math.Divider;
-import ua.com.foxminded.iliapanteleychuk.integerdivision.dataToDraw.Result;
+import ua.com.foxminded.iliapanteleychuk.integerdivision.model.Model;
 
 
 public class Main {
@@ -20,9 +20,9 @@ public class Main {
         int firstArgument = Integer.parseInt(args[0]);
         int secondArgument = Integer.parseInt(args[1]);
         Divider divider = new Divider();
-        Result result = divider.divide(firstArgument, secondArgument);
+        Model model = divider.divide(firstArgument, secondArgument);
         Formatter formatter = new ClassicFormatter();
-        String output = formatter.format(result);
+        String output = formatter.format(model);
         System.out.println(output);
     }
 }

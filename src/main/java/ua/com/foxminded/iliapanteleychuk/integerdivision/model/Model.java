@@ -1,16 +1,16 @@
-package ua.com.foxminded.iliapanteleychuk.integerdivision.dataToDraw;
+package ua.com.foxminded.iliapanteleychuk.integerdivision.model;
 
 import java.util.List;
 
 
-public class Result {
+public class Model {
 
     private final int dividend;
     private final int divisor;
     private final List<Step> stepsList;
     private final int divisionResult;
 
-    public Result(int dividend, int divisor, List<Step> stepsList, int divisionResult) {
+    public Model(int dividend, int divisor, List<Step> stepsList, int divisionResult) {
         this.dividend = dividend;
         this.divisor = divisor;
         this.stepsList = stepsList;

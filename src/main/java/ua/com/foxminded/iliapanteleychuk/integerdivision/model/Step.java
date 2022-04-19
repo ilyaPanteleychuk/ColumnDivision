@@ -1,4 +1,4 @@
-package ua.com.foxminded.iliapanteleychuk.integerdivision.dataToDraw;
+package ua.com.foxminded.iliapanteleychuk.integerdivision.model;
 
 import java.util.Objects;
 

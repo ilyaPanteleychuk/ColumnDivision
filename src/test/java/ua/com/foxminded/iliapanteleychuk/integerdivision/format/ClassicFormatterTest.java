@@ -3,7 +3,7 @@ package ua.com.foxminded.iliapanteleychuk.integerdivision.format;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ua.com.foxminded.iliapanteleychuk.integerdivision.math.Divider;
-import ua.com.foxminded.iliapanteleychuk.integerdivision.dataToDraw.Result;
+import ua.com.foxminded.iliapanteleychuk.integerdivision.model.Model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static java.lang.System.lineSeparator;
 
@@ -20,8 +20,8 @@ class ClassicFormatterTest {
 
     @Test
     void format_shouldDoRightOutput_WhenDividendIsShortButDivisorIsSingleDigit() {
-        Result result = divider.divide(452,2);
-        String expected = formatter.format(result);
+        Model model = divider.divide(452,2);
+        String expected = formatter.format(model);
         String actual = "_452|2" + lineSeparator() +
                         " 4  |---" + lineSeparator() +
                         " -  |226" + lineSeparator() +
@@ -37,8 +37,8 @@ class ClassicFormatterTest {
 
     @Test
     void format_shouldDoRightOutput_WhenDividendIsLongButDivisorIsSingleDigit(){
-        Result result = divider.divide(87534364, 7);
-        String expected = formatter.format(result);
+        Model model = divider.divide(87534364, 7);
+        String expected = formatter.format(model);
         String actual = "_87534364|7" + lineSeparator() +
                         " 7       |--------" + lineSeparator() +
                         " -       |12504909" + lineSeparator() +
@@ -63,8 +63,8 @@ class ClassicFormatterTest {
 
     @Test
     void format_shouldDoRightOutput_WhenDividendIsShortButDivisorIsTwoDigitNumber(){
-        Result result = divider.divide(534, 12);
-        String expected = formatter.format(result);
+        Model model = divider.divide(534, 12);
+        String expected = formatter.format(model);
         String actual = "_534|12" + lineSeparator() +
                         " 48 |--" + lineSeparator() +
                         " -- |44" + lineSeparator() +
@@ -77,8 +77,8 @@ class ClassicFormatterTest {
 
     @Test
     void format_shouldDoRightOutput_whenDividendIsLongButDivisorIsTwoDigitNumber(){
-        Result result = divider.divide(347343203, 21);
-        String expected = formatter.format(result);
+        Model model = divider.divide(347343203, 21);
+        String expected = formatter.format(model);
         String actual = "_347343203|21" + lineSeparator() +
                         " 21       |--------" + lineSeparator() +
                         " --       |16540152" + lineSeparator() +
@@ -106,8 +106,8 @@ class ClassicFormatterTest {
 
     @Test
     void format_shouldDoRightOutput_whenDividendIsLongAndDivisorIsLong(){
-        Result result = divider.divide( 2100421235, 1849203475);
-        String expected = formatter.format(result);
+        Model model = divider.divide( 2100421235, 1849203475);
+        String expected = formatter.format(model);
         String actual = "_2100421235|1849203475" + lineSeparator() +
                         " 1849203475|----------" + lineSeparator() +
                         " ----------|1" + lineSeparator() +
@@ -117,8 +117,8 @@ class ClassicFormatterTest {
 
     @Test
     void format_shouldDoRightOutput_whenDividendIsSingleAndDivisorIsSingle(){
-        Result result = divider.divide(8, 2);
-        String expected = formatter.format(result);
+        Model model = divider.divide(8, 2);
+        String expected = formatter.format(model);
         String actual = "_8|2" + lineSeparator() +
                         " 8|-" + lineSeparator() +
                         " -|4" + lineSeparator() +

@@ -1,14 +1,14 @@
 package ua.com.foxminded.iliapanteleychuk.integerdivision.math;
 
-import ua.com.foxminded.iliapanteleychuk.integerdivision.dataToDraw.Result;
-import ua.com.foxminded.iliapanteleychuk.integerdivision.dataToDraw.Step;
+import ua.com.foxminded.iliapanteleychuk.integerdivision.model.Model;
+import ua.com.foxminded.iliapanteleychuk.integerdivision.model.Step;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class Divider {
 
-    public Result divide(int dividend, int divisor) {
+    public Model divide(int dividend, int divisor) {
         List<Step> steps = new ArrayList<>();
         char[] dividendArray = String.valueOf(dividend).toCharArray();
         int divisionResult = dividend / divisor;
@@ -47,7 +47,7 @@ public class Divider {
                 i++;
             }
         }
-        return new Result(dividend, divisor, steps, divisionResult);
+        return new Model(dividend, divisor, steps, divisionResult);
     }
 
     private int countPosition(int partialDividend, int divisor, int previousPosition){

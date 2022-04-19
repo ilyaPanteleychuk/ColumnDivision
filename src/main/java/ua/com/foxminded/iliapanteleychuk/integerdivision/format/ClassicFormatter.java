@@ -1,7 +1,7 @@
 package ua.com.foxminded.iliapanteleychuk.integerdivision.format;
 
-import ua.com.foxminded.iliapanteleychuk.integerdivision.dataToDraw.Result;
-import ua.com.foxminded.iliapanteleychuk.integerdivision.dataToDraw.Step;
+import ua.com.foxminded.iliapanteleychuk.integerdivision.model.Model;
+import ua.com.foxminded.iliapanteleychuk.integerdivision.model.Step;
 import java.util.List;
 import static java.lang.System.lineSeparator;
 
@@ -12,20 +12,20 @@ public class ClassicFormatter implements Formatter {
     private final StringBuilder output = new StringBuilder();
 
     @Override
-    public String format(Result result) {
-        List<Step> steps = result.getStepsList();
-        drawHeader(result);
+    public String format(Model model) {
+        List<Step> steps = model.getStepsList();
+        drawHeader(model);
         steps.remove(0);
-        drawStep(result);
+        drawStep(model);
         return output.toString();
     }
 
-    private void drawHeader(Result result) {
-        List<Step> steps = result.getStepsList();
+    private void drawHeader(Model model) {
+        List<Step> steps = model.getStepsList();
         Step firstStep = steps.get(0);
-        int dividend = result.getDividend();
-        int divisor = result.getDivisor();
-        int divisionResult = result.getDivisionResult();
+        int dividend = model.getDividend();
+        int divisor = model.getDivisor();
+        int divisionResult = model.getDivisionResult();
         int firstPartialDividend = firstStep.getPartialDividend();
         int firstIntegralPartialDividend = firstStep.getIntegralPartialDividend();
         output.append("_")
@@ -60,9 +60,9 @@ public class ClassicFormatter implements Formatter {
         }
     }
 
-    private void drawStep(Result result) {
-        List<Step> steps = result.getStepsList();
-        int divisor = result.getDivisor();
+    private void drawStep(Model model) {
+        List<Step> steps = model.getStepsList();
+        int divisor = model.getDivisor();
         while (!(steps.isEmpty())) {
             int partialDividend = steps.get(0).getPartialDividend();
             int integralPartialDividend = steps.get(0).getIntegralPartialDividend();
@@ -113,7 +113,7 @@ public class ClassicFormatter implements Formatter {
                       .append("0");
             }
             steps.remove(0);
-            drawStep(result);
+            drawStep(model);
         }
     }
 
