@@ -1,8 +1,8 @@
 package ua.com.foxminded.iliapanteleychuk.integerdivision.format;
 
-import ua.com.foxminded.iliapanteleychuk.integerdivision.model.Model;
+import ua.com.foxminded.iliapanteleychuk.integerdivision.model.DivisionResult;
 
 
 public interface Formatter {
-    String format(Model model);
+    String format(DivisionResult divisionResult);
 }

@@ -1,6 +1,6 @@
 package ua.com.foxminded.iliapanteleychuk.integerdivision.math;
 
-import ua.com.foxminded.iliapanteleychuk.integerdivision.model.Model;
+import ua.com.foxminded.iliapanteleychuk.integerdivision.model.DivisionResult;
 import ua.com.foxminded.iliapanteleychuk.integerdivision.model.Step;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +8,9 @@ import java.util.List;
 
 public class Divider {
 
-    public Model divide(int dividend, int divisor){
+    public DivisionResult divide(int dividend, int divisor){
         List<Step> steps = init(dividend, divisor);
-        return new Model(dividend, divisor, steps, (dividend / divisor));
+        return new DivisionResult(dividend, divisor, steps, (dividend / divisor));
     }
 
     private List<Step> init(int dividend, int divisor){

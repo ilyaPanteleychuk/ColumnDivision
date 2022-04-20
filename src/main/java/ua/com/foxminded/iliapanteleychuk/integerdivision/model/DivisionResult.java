@@ -3,18 +3,18 @@ package ua.com.foxminded.iliapanteleychuk.integerdivision.model;
 import java.util.List;
 
 
-public class Model {
+public class DivisionResult {
 
     private final int dividend;
     private final int divisor;
     private final List<Step> stepsList;
-    private final int divisionResult;
+    private final int resultOfDivision;
 
-    public Model(int dividend, int divisor, List<Step> stepsList, int divisionResult) {
+    public DivisionResult(int dividend, int divisor, List<Step> stepsList, int resultOfDivision) {
         this.dividend = dividend;
         this.divisor = divisor;
         this.stepsList = stepsList;
-        this.divisionResult = divisionResult;
+        this.resultOfDivision = resultOfDivision;
     }
 
     public int getDividend() {
@@ -29,7 +29,7 @@ public class Model {
         return stepsList;
     }
 
-    public int getDivisionResult() {
-        return divisionResult;
+    public int getResultOfDivision() {
+        return resultOfDivision;
     }
 }
