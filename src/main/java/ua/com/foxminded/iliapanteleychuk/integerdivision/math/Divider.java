@@ -8,64 +8,91 @@ import java.util.List;
 
 public class Divider {
 
-    public Model divide(int dividend, int divisor) {
+    public Model divide(int dividend, int divisor){
+        List<Step> steps = init(dividend, divisor);
+        return new Model(dividend, divisor, steps, (dividend / divisor));
+    }
+
+    private List<Step> init(int dividend, int divisor){
+        List<Integer> positions = countPosition(dividend,divisor);
+        List<Integer> partialDividends = countPartialDividend(dividend, divisor);
+        List<Integer> integralDividends = countIntegralPartialDividend(dividend, divisor);
+        return addStep(positions, partialDividends, integralDividends);
+    }
+
+    private List<Step> addStep(List<Integer> positions, List<Integer> partials,
+                               List<Integer> integralPartials) {
         List<Step> steps = new ArrayList<>();
+        for(int i = 0; i < partials.size(); i++){
+            Step step = new Step(positions.get(i), partials.get(i), integralPartials.get(i));
+            steps.add(step);
+        }
+        return steps;
+    }
+
+    private List<Integer> countPartialDividend(int dividend, int divisor){
+        List<Integer> partialDividends = new ArrayList<>();
         char[] dividendArray = String.valueOf(dividend).toCharArray();
-        int divisionResult = dividend / divisor;
-        int i = 0;
-        int k = 0;
-        int position;
-        int previousPosition;
         int partialDividend = Integer.parseInt(String.valueOf(dividendArray[0]));
-        while (i <= dividendArray.length - 1) {
-            position = k;
+        int counter = 0;
+        while(counter <= dividendArray.length - 1) {
             if (partialDividend == 0) {
-                partialDividend = Integer.parseInt(String.valueOf(dividendArray[i]));
+                partialDividend = Integer.parseInt(String.valueOf(dividendArray[counter]));
             }
-            while (partialDividend < divisor) {
-                if (i < dividendArray.length - 1) {
+            while(partialDividend < divisor) {
+                if(counter < dividendArray.length - 1) {
                     partialDividend = Integer.parseInt(partialDividend +
-                        String.valueOf(dividendArray[i + 1]));
-                    i++;
+                            String.valueOf(dividendArray[counter + 1]));
+                    counter++;
                 }
-                if (partialDividend < divisor && i == dividendArray.length - 1) {
+                if(partialDividend < divisor && counter == dividendArray.length - 1) {
+                    counter++;
                     break;
                 }
             }
-            previousPosition = k;
-            k = countPosition(partialDividend, divisor, previousPosition);
             if (partialDividend % divisor == 0) {
-                i++;
+                counter++;
             }
-            if (partialDividend >= divisor) {
-                addStep(partialDividend, divisor, position, steps);
-                partialDividend = partialDividend % divisor;
-            }
-            if (i == dividendArray.length - 1) {
-                position = k;
-                addStep(partialDividend, divisor, position, steps);
-                i++;
-            }
+            partialDividends.add(partialDividend);
+            partialDividend = partialDividend % divisor;
         }
-        return new Model(dividend, divisor, steps, divisionResult);
+        return partialDividends;
     }
 
-    private int countPosition(int partialDividend, int divisor, int previousPosition){
-        int k;
-        int partialDividendLength = String.valueOf(partialDividend).length();
-        int nextElementLength = String.valueOf(partialDividend % divisor).length();
-        if(partialDividend % divisor != 0) {
-            k = (partialDividendLength - nextElementLength) + previousPosition;
-        }else {
-            k = partialDividendLength + previousPosition;
+    private List<Integer> countIntegralPartialDividend(int dividend, int divisor){
+        List<Integer> integralPartialDividends = new ArrayList<>();
+        List<Integer> partialDividends = countPartialDividend(dividend, divisor);
+        for(Integer partialDividend : partialDividends) {
+            int integralPartialDividend = partialDividend -
+                        (partialDividend % divisor);
+            integralPartialDividends.add(integralPartialDividend);
         }
-        return k;
+        return integralPartialDividends;
     }
 
-    private List<Step> addStep(int partialDividend, int divisor, int position, List<Step> steps){
-        Step step = new Step(position, partialDividend,
-            partialDividend - (partialDividend % divisor));
-        steps.add(step);
-        return steps;
+    private List<Integer> countPosition(int dividend, int divisor){
+        List<Integer> positions = new ArrayList<>();
+        List<Integer> partialDividends = countPartialDividend(dividend, divisor);
+        int counter = 0;
+        int positionCounter = 0;
+        int position;
+        int previousPosition;
+        while(counter < partialDividends.size()){
+            position = positionCounter;
+            previousPosition = positionCounter;
+            int partialDividendLength = String.valueOf
+                                            (partialDividends.get(counter)).length();
+            int nextElementLength = String.valueOf
+                                    (partialDividends.get(counter) % divisor).length();
+            if(partialDividends.get(counter) % divisor != 0) {
+                positionCounter = (partialDividendLength - nextElementLength)
+                        + previousPosition;
+            }else {
+                positionCounter = partialDividendLength + previousPosition;
+            }
+            counter++;
+            positions.add(position);
+        }
+        return positions;
     }
 }
